@@ -1,10 +1,10 @@
-FROM nvidia/cuda:11.6.0-cudnn8-devel-ubuntu20.04 AS builder
+FROM nvidia/cuda:12.3.2-devel-ubuntu22.04 AS builder
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y
+RUN apt update -y
 
-RUN apt-get install -y g++ make pkg-config libopencv-dev
+RUN apt install -y g++ make pkg-config libopencv-dev
 
 COPY  . /darknet
 
@@ -14,15 +14,15 @@ RUN rm Dockerfile.cpu
 
 RUN rm Dockerfile.gpu
 
-RUN rm Docker-compose.yml
+RUN rm docker-compose.yml
 
 RUN make
 
-FROM nvidia/cuda:11.6.0-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:12.3.2-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y
+RUN apt update -y
 
 RUN apt-get install -y sudo libgomp1
 

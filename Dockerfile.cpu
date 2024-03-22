@@ -14,7 +14,11 @@ RUN rm Dockerfile.cpu
 
 RUN rm Dockerfile.gpu
 
-RUN rm Docker-compose.yml
+RUN apt-get update -y
+
+RUN apt-get update -y
+
+RUN rm docker-compose.yml
 
 RUN make
 
@@ -24,15 +28,31 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y
 
+RUN apt-get install nano
+
 RUN apt-get install -y sudo libgomp1
 
-RUN useradd -U -m yolo
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
-RUN usermod -aG sudo yolo 
+#RUN useradd -U -m yolo
 
-RUN usermod --shell /bin/bash yolo
+#RUN usermod -aG sudo yolo 
 
-RUN echo "yolo:yolo" | chpasswd
+#RUN usermod --shell /bin/bash yolo
+
+# RUN echo "yolo:yolo" | chpasswd
+
+RUN apt install python3 -y
+
+RUN apt install python3-pip -y
+
+RUN pip install flask
+
+RUN pip install opencv-python
+
+RUN apt-get install curl -y
+
+EXPOSE 5000
 
 COPY --from=builder /darknet /home/yolo/darknet
 
@@ -44,6 +64,4 @@ RUN ldconfig
 
 WORKDIR /home/yolo/darknet
 
-USER yolo
-
-
+# VOLUME /dnshare
