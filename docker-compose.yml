@@ -17,10 +17,10 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.cpu
-    entrypoint: python3 /dnshare/server/server.py #Relative pathing. Only change if you have also changed the path of the volume inside your container
+    entrypoint: python3 /dnshare/server/server_all.py #Relative pathing. Only change if you have also changed the path of the volume inside your container
     image: yolo:cpu
     volumes:
         # */zebrai/dnshare:/dnshare:rw
-      - /ltstorage/shares/projects/zebrai/dnshare:/dnshare:rw #TODO Configure the absolute path of the volume on your machine/server
+      - /ltstorage/shares/projects/zebrai/dnshare:/dnshare:rw # TODO Configure the absolute path of the volume on your machine/server
     ports:
       - "5656:5000" #Port 5656 can be configured
