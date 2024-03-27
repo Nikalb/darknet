@@ -9,10 +9,10 @@ The goal was it to set up a version of Yolov4 with the loaded Yolo-Fish model in
 To access the container more easily, a python web server was added, to upload and download data more easily.
 
 # Steps for setup
-
-- clone the following two github projects onto your server
-- 
--
+- create directory zebrai 
+- clone the following two github projects into zebrai
+- https://github.com/Nikalb/darknet
+- https://github.com/Nikalb/share-for-zebrAI
 - configuration parts are marked by TODO as comments
 - build a docker container from /darknet
 - run the docker container from /darknet
